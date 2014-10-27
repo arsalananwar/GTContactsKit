@@ -1,5 +1,5 @@
 target 'GTContactsKit', :exclusive => true do
-  pod "GTContactsKit", :path => "https://github.com/arsalananwar/GTContactsKit.git"
+  pod "GTContactsKit", :git => "https://github.com/arsalananwar/GTContactsKit.git"
 end
 
 target 'Tests', :exclusive => true do
