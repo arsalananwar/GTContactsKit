@@ -31,10 +31,11 @@
 #import "GTContactsPicker.h"
 #import "GTPerson.h"
 
-@interface GTContactsPickerController () <VENTokenFieldDataSource, VENTokenFieldDelegate>
+@interface GTContactsPickerController () <VENTokenFieldDataSource, VENTokenFieldDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *pickedContacts;
 @property (nonatomic, strong) NSArray *searchResults;
+@property (nonatomic, strong) NSArray *indexTitles;
 @property (nonatomic, assign) BOOL searching;
 
 @property (nonatomic, weak) VENTokenField *tokenField;
@@ -69,6 +70,9 @@
 
     [self.tableView setTableHeaderView:headerView];
     [self.tableView setRowHeight:60.0f];
+    
+    self.indexTitles = @[@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z"];
+    
     [self reloadContacts];
     [self _updateView];
 }
@@ -219,6 +223,30 @@
 
     return cell;
 }
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    return self.indexTitles;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    NSArray *contacts = self.searching ? self.searchResults : self.contacts;
+    NSUInteger count = contacts.count;
+    
+    for (int index = 0; index < count; index++) {
+        GTPerson *person = [contacts objectAtIndex:index];
+        NSString *name = person.fullName;
+        if( [[name lowercaseString] hasPrefix:[title lowercaseString]] ) {
+            NSIndexPath *indexPath = [NSIndexPath  indexPathForRow:index inSection:0];
+
+            [tableView scrollToRowAtIndexPath:indexPath
+                             atScrollPosition:UITableViewScrollPositionTop
+                                     animated:YES];
+            return index;
+        }
+    }
+    return -1;
+}
+
 
 - (BOOL)didSelectContact:(GTPerson *)person
 {

@@ -170,6 +170,9 @@
             }
         }
         
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"fullName" ascending:YES];
+        [formattedPeople sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             completionBlock(formattedPeople, nil);
         }];

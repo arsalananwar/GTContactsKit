@@ -4,26 +4,28 @@ PODS:
   - GTContactsKit (0.1.2):
     - GTFoundation (~> 0.1)
     - VENTokenField (~> 2.2)
-  - GTFoundation (0.1.3)
+  - GTFoundation (0.1.4):
+    - GTFoundation/Colors
+  - GTFoundation/Colors (0.1.4)
   - Specta (0.2.1)
   - VENTokenField (2.2.1):
     - FrameAccessor (~> 1.0)
 
 DEPENDENCIES:
   - Expecta
-  - GTContactsKit (from `../`)
+  - GTContactsKit (from `https://github.com/arsalananwar/GTContactsKit.git`)
   - Specta (~> 0.2.1)
 
 EXTERNAL SOURCES:
   GTContactsKit:
-    :path: ../
+    :git: https://github.com/arsalananwar/GTContactsKit.git
 
 SPEC CHECKSUMS:
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   FrameAccessor: 5eec95b29b5e9a3afe72a7a2e9ed25b000d3bcc3
   GTContactsKit: 2b0c7cb705893d544de77d0b8fffca441d39ebee
-  GTFoundation: e9835fac02a51267464943a055e27b4fe303da02
+  GTFoundation: ef904d0c4d1981c55edbf229444654822ff6b06c
   Specta: 9141310f46b1f68b676650ff2854e1ed0b74163a
   VENTokenField: 8f6a986421fbe77b5cf449a0f3e6ff17df26eb98
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.2
